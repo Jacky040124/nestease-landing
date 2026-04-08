@@ -1,23 +1,33 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+
+function Logo({ size = "md" }: { size?: "sm" | "md" }) {
+  const textSize = size === "sm" ? "text-[15px]" : "text-[18px]";
+  const subSize = size === "sm" ? "text-[10px]" : "text-[11px]";
+  return (
+    <div className="flex items-baseline gap-1">
+      <span className={`${textSize} font-bold tracking-tight text-primary`}>
+        栖安
+      </span>
+      <span className={`${subSize} font-medium tracking-[0.08em] text-secondary uppercase`}>
+        NestEase
+      </span>
+    </div>
+  );
+}
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/[0.04]">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/[0.05]">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-rausch flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-          </div>
-          <span className="text-[17px] font-semibold tracking-tight text-[#222]">栖安</span>
+        <a href="#">
+          <Logo />
         </a>
         <a
           href="#contact"
-          className="hidden sm:inline-flex items-center h-10 px-5 bg-[#222] text-white text-[13px] font-medium rounded-lg hover:bg-rausch transition-all duration-200"
+          className="hidden sm:inline-flex items-center h-9 px-5 bg-primary text-white text-[13px] font-medium rounded-lg hover:bg-primary-dark transition-all duration-200"
         >
           预约咨询
         </a>
@@ -28,36 +38,46 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-rose-50/80 via-white to-white" />
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-rausch/[0.03] blur-3xl" />
-      <div className="relative max-w-3xl mx-auto text-center pt-24 pb-20 sm:pt-32 sm:pb-28 px-6">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rausch/[0.08] text-rausch text-xs font-semibold tracking-wide mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-rausch animate-pulse" />
-          现已开放预约
-        </div>
-        <h1 className="text-[40px] sm:text-[56px] font-bold leading-[1.1] tracking-[-0.02em] text-[#222]">
-          海外华人房东的
-          <br />
-          <span className="bg-gradient-to-r from-rausch to-[#e00b41] bg-clip-text text-transparent">智能物业管家</span>
-        </h1>
-        <p className="mt-6 text-[17px] sm:text-lg text-[#6a6a6a] leading-relaxed max-w-lg mx-auto">
-          受够了物业公司的糊涂账？栖安用 AI 帮您管房子，每一笔花费清清楚楚，中英沟通再无障碍。
-        </p>
-        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center h-12 px-7 bg-rausch text-white text-[15px] font-medium rounded-xl hover:bg-rausch-deep transition-all duration-200 shadow-[0_1px_2px_rgba(0,0,0,0.05),0_4px_12px_rgba(255,56,92,0.25)]"
-          >
-            预约免费咨询
-            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-          </a>
-          <a
-            href="#solutions"
-            className="inline-flex items-center justify-center h-12 px-7 bg-white text-[#222] text-[15px] font-medium rounded-xl border border-black/[0.08] hover:border-black/[0.16] hover:shadow-sm transition-all duration-200"
-          >
-            了解服务
-          </a>
+    <section className="relative bg-primary overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80&auto=format"
+          alt="Modern home"
+          fill
+          className="object-cover opacity-20"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
+      </div>
+      <div className="relative max-w-6xl mx-auto px-6 py-24 sm:py-32">
+        <div className="max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/80 text-xs font-medium mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            现已开放预约
+          </div>
+          <h1 className="text-[36px] sm:text-[48px] font-bold leading-[1.1] tracking-[-0.02em] text-white">
+            海外华人房东的
+            <br />
+            智能物业管家
+          </h1>
+          <p className="mt-5 text-[16px] sm:text-[17px] text-white/70 leading-relaxed max-w-md">
+            受够了物业公司的糊涂账？栖安用 AI 帮您管房子，每一笔花费清清楚楚，中英沟通再无障碍。
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center h-12 px-7 bg-accent text-white text-[15px] font-medium rounded-xl hover:bg-accent-dark transition-all duration-200"
+            >
+              预约免费咨询
+              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+            <a
+              href="#solutions"
+              className="inline-flex items-center justify-center h-12 px-7 text-white/90 text-[15px] font-medium rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-200"
+            >
+              了解服务
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -68,39 +88,33 @@ function PainPoints() {
   const points = [
     {
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-          <line x1="12" y1="19" x2="12" y2="23" />
-          <line x1="8" y1="23" x2="16" y2="23" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
         </svg>
       ),
-      color: "bg-amber-50 text-amber-600",
       title: "物业公司不透明",
       description:
         "维修明明 $80 能搞定，物业公司报价 $240。账单看不懂，问了也说不清楚。钱花在哪了，永远是个谜。",
     },
     {
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
           <line x1="2" y1="12" x2="22" y2="12" />
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
       ),
-      color: "bg-blue-50 text-blue-600",
       title: "语言障碍重重",
       description:
         "租客半夜打电话报漏水，英文听不全、说不清。找维修工沟通更头疼，每次都得拉上朋友帮忙翻译。",
     },
     {
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
           <polyline points="12 6 12 12 16 14" />
         </svg>
       ),
-      color: "bg-purple-50 text-purple-600",
       title: "远程管理耗时耗力",
       description:
         "人在温哥华，房在西雅图。物业经理总说'已处理'，但到底修了没有？只能干着急。",
@@ -110,28 +124,20 @@ function PainPoints() {
   return (
     <section className="py-20 sm:py-28 px-6">
       <div className="max-w-5xl mx-auto">
-        <p className="text-center text-rausch text-sm font-semibold tracking-wide mb-3">
-          痛点
-        </p>
-        <h2 className="text-[28px] sm:text-[36px] font-bold text-center text-[#222] tracking-[-0.02em] mb-4">
+        <p className="text-primary text-sm font-semibold tracking-wide mb-3 text-center">常见痛点</p>
+        <h2 className="text-[26px] sm:text-[34px] font-bold text-center text-foreground tracking-[-0.02em] mb-14">
           这些问题，是不是很熟悉？
         </h2>
-        <p className="text-center text-[#6a6a6a] mb-14 max-w-md mx-auto">
-          我们深知华人房东在海外管理房产的难处
-        </p>
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-3 gap-8">
           {points.map((point) => (
-            <div
-              key={point.title}
-              className="group bg-white rounded-2xl p-7 border border-black/[0.04] hover:border-black/[0.08] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300"
-            >
-              <div className={`w-11 h-11 rounded-xl ${point.color} flex items-center justify-center mb-5`}>
+            <div key={point.title}>
+              <div className="w-10 h-10 rounded-lg bg-primary-light text-primary flex items-center justify-center mb-4">
                 {point.icon}
               </div>
-              <h3 className="text-[16px] font-semibold text-[#222] mb-2.5">
+              <h3 className="text-[15px] font-semibold text-foreground mb-2">
                 {point.title}
               </h3>
-              <p className="text-[14px] text-[#6a6a6a] leading-[1.6]">
+              <p className="text-[14px] text-secondary leading-[1.7]">
                 {point.description}
               </p>
             </div>
@@ -146,7 +152,7 @@ function Solutions() {
   const solutions = [
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
       ),
@@ -156,12 +162,11 @@ function Solutions() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14 2 14 8 20 8" />
           <line x1="16" y1="13" x2="8" y2="13" />
           <line x1="16" y1="17" x2="8" y2="17" />
-          <polyline points="10 9 9 9 8 9" />
         </svg>
       ),
       title: "工单全程透明",
@@ -170,7 +175,7 @@ function Solutions() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
           <line x1="2" y1="12" x2="22" y2="12" />
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -182,7 +187,7 @@ function Solutions() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="20" x2="18" y2="10" />
           <line x1="12" y1="20" x2="12" y2="4" />
           <line x1="6" y1="20" x2="6" y2="14" />
@@ -195,31 +200,29 @@ function Solutions() {
   ];
 
   return (
-    <section id="solutions" className="py-20 sm:py-28 px-6 bg-[#fafafa]">
+    <section id="solutions" className="py-20 sm:py-28 px-6 bg-surface">
       <div className="max-w-5xl mx-auto">
-        <p className="text-center text-rausch text-sm font-semibold tracking-wide mb-3">
-          解决方案
-        </p>
-        <h2 className="text-[28px] sm:text-[36px] font-bold text-center text-[#222] tracking-[-0.02em] mb-4">
+        <p className="text-primary text-sm font-semibold tracking-wide mb-3 text-center">解决方案</p>
+        <h2 className="text-[26px] sm:text-[34px] font-bold text-center text-foreground tracking-[-0.02em] mb-5">
           栖安，让一切变简单
         </h2>
-        <p className="text-center text-[#6a6a6a] mb-14 max-w-md mx-auto">
+        <p className="text-center text-secondary mb-14 max-w-md mx-auto">
           专为华人房东设计的智能物业管理方案
         </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {solutions.map((sol, i) => (
+        <div className="grid sm:grid-cols-2 gap-px bg-black/[0.06] rounded-2xl overflow-hidden">
+          {solutions.map((sol) => (
             <div
               key={sol.title}
-              className="group flex gap-5 p-6 rounded-2xl bg-white border border-black/[0.04] hover:border-black/[0.08] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300"
+              className="flex gap-4 p-7 bg-white"
             >
-              <div className="w-11 h-11 rounded-xl bg-rausch/[0.08] text-rausch flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-primary-light text-primary flex items-center justify-center shrink-0">
                 {sol.icon}
               </div>
               <div>
-                <h3 className="text-[16px] font-semibold text-[#222] mb-1.5">
+                <h3 className="text-[15px] font-semibold text-foreground mb-1.5">
                   {sol.title}
                 </h3>
-                <p className="text-[14px] text-[#6a6a6a] leading-[1.6]">
+                <p className="text-[13px] text-secondary leading-[1.7]">
                   {sol.description}
                 </p>
               </div>
@@ -231,26 +234,38 @@ function Solutions() {
   );
 }
 
-function Stats() {
-  const stats = [
-    { value: "62%", label: "物业来电被漏接" },
-    { value: "20%+", label: "维修平均加价幅度" },
-    { value: "24/7", label: "AI 全天候在线" },
-    { value: "中英", label: "双语无障碍沟通" },
-  ];
-
+function Highlight() {
   return (
-    <section className="py-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-[32px] sm:text-[40px] font-bold text-rausch tracking-tight">
-                {stat.value}
-              </div>
-              <div className="text-[13px] text-[#6a6a6a] mt-1">{stat.label}</div>
+    <section className="py-20 sm:py-28 px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-12 items-center">
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format"
+              alt="Beautiful home interior"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <p className="text-primary text-sm font-semibold tracking-wide mb-3">为什么选择栖安</p>
+            <h2 className="text-[26px] sm:text-[30px] font-bold text-foreground tracking-[-0.02em] mb-5 leading-tight">
+              您负责投资，
+              <br />我们负责管好每一天
+            </h2>
+            <div className="space-y-4">
+              {[
+                { num: "01", text: "所有沟通记录、维修工单、财务账目全部在线可查" },
+                { num: "02", text: "AI 自动处理 80% 的日常租客沟通" },
+                { num: "03", text: "每月中文报告，收支一目了然" },
+              ].map((item) => (
+                <div key={item.num} className="flex gap-4 items-start">
+                  <span className="text-[13px] font-bold text-primary/40 mt-0.5">{item.num}</span>
+                  <p className="text-[14px] text-secondary leading-[1.6]">{item.text}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
@@ -284,38 +299,35 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 px-6 bg-[#fafafa]">
+    <section id="contact" className="py-20 sm:py-28 px-6 bg-primary">
       <div className="max-w-md mx-auto text-center">
-        <p className="text-rausch text-sm font-semibold tracking-wide mb-3">
-          开始使用
-        </p>
-        <h2 className="text-[28px] sm:text-[36px] font-bold text-[#222] tracking-[-0.02em] mb-3">
-          留下您的微信号
+        <h2 className="text-[26px] sm:text-[34px] font-bold text-white tracking-[-0.02em] mb-3">
+          开始使用栖安
         </h2>
-        <p className="text-[#6a6a6a] mb-2">
-          我们会在 24 小时内添加您，提供免费咨询
+        <p className="text-white/60 mb-2">
+          留下微信号，我们 24 小时内联系您
         </p>
-        <p className="text-sm text-rausch font-medium mb-8">
+        <p className="text-sm text-accent font-medium mb-8">
           已有 30+ 位华人房东加入等待列表
         </p>
         {submitted ? (
-          <div className="bg-white rounded-2xl p-10 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
+          <div className="bg-white rounded-2xl p-10">
             <div className="w-14 h-14 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-4">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <p className="text-lg font-semibold text-[#222]">提交成功！</p>
-            <p className="text-sm text-[#6a6a6a] mt-2">我们会尽快通过微信联系您</p>
+            <p className="text-lg font-semibold text-foreground">提交成功！</p>
+            <p className="text-sm text-secondary mt-2">我们会尽快通过微信联系您</p>
           </div>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-2xl p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+            className="bg-white rounded-2xl p-8 text-left"
           >
             <label
               htmlFor="wechat"
-              className="block text-[13px] font-medium text-[#222] text-left mb-2"
+              className="block text-[13px] font-medium text-foreground mb-2"
             >
               微信号
             </label>
@@ -326,19 +338,19 @@ function Contact() {
               onChange={(e) => setWechat(e.target.value)}
               placeholder="请输入您的微信号"
               required
-              className="w-full h-12 px-4 rounded-xl border border-black/[0.1] text-[15px] text-[#222] placeholder:text-[#c1c1c1] focus:outline-none focus:ring-2 focus:ring-rausch/20 focus:border-rausch transition-all duration-200"
+              className="w-full h-12 px-4 rounded-xl border border-black/[0.1] text-[15px] text-foreground placeholder:text-black/25 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="w-full mt-4 h-12 bg-rausch text-white text-[15px] font-medium rounded-xl hover:bg-rausch-deep transition-all duration-200 disabled:opacity-60 shadow-[0_1px_2px_rgba(0,0,0,0.05),0_4px_12px_rgba(255,56,92,0.25)]"
+              className="w-full mt-4 h-12 bg-accent text-white text-[15px] font-medium rounded-xl hover:bg-accent-dark transition-all duration-200 disabled:opacity-60"
             >
               {submitting ? "提交中..." : "预约免费咨询"}
             </button>
             {error && (
-              <p className="text-xs text-[#c13515] mt-2">{error}</p>
+              <p className="text-xs text-red-500 mt-2">{error}</p>
             )}
-            <p className="text-[12px] text-[#6a6a6a] mt-4">
+            <p className="text-[12px] text-secondary mt-4 text-center">
               我们尊重您的隐私，信息仅用于联系您
             </p>
           </form>
@@ -350,17 +362,9 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-black/[0.04]">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[#6a6a6a]">
-        <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-md bg-rausch flex items-center justify-center">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-          </div>
-          <span className="font-medium text-[#222]">栖安 NestEase</span>
-        </div>
+    <footer className="py-8 px-6 border-t border-black/[0.05]">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-secondary">
+        <Logo size="sm" />
         <p>&copy; {new Date().getFullYear()} NestEase. All rights reserved.</p>
       </div>
     </footer>
@@ -375,7 +379,7 @@ export default function Home() {
         <Hero />
         <PainPoints />
         <Solutions />
-        <Stats />
+        <Highlight />
         <Contact />
       </main>
       <Footer />
