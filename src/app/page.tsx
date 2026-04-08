@@ -4,16 +4,20 @@ import { useState } from "react";
 import Image from "next/image";
 
 function Logo({ size = "md" }: { size?: "sm" | "md" }) {
+  const imgSize = size === "sm" ? 24 : 32;
   const textSize = size === "sm" ? "text-[15px]" : "text-[18px]";
   const subSize = size === "sm" ? "text-[10px]" : "text-[11px]";
   return (
-    <div className="flex items-baseline gap-1">
-      <span className={`${textSize} font-bold tracking-tight text-primary`}>
-        栖安
-      </span>
-      <span className={`${subSize} font-medium tracking-[0.08em] text-secondary uppercase`}>
-        NestEase
-      </span>
+    <div className="flex items-center gap-2">
+      <Image src="/logo.png" alt="栖安" width={imgSize} height={imgSize} />
+      <div className="flex items-baseline gap-1">
+        <span className={`${textSize} font-bold tracking-tight text-primary`}>
+          栖安
+        </span>
+        <span className={`${subSize} font-medium tracking-[0.08em] text-secondary uppercase`}>
+          NestEase
+        </span>
+      </div>
     </div>
   );
 }
